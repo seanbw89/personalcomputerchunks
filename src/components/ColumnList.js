@@ -18,6 +18,9 @@ const Ptag = styled.p`
   width:100%;
   display:flex;
   justify-content:flex-start;
+  padding-top:10px;
+  padding-bottom:40px;
+  font-weight:bold;
 `
 
 
