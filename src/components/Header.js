@@ -12,7 +12,7 @@ const LogoLogin = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgb(216,216,216);
+  background:rgba(202,202,202,0.9);
 `
 
 const Menu = styled.div`
@@ -21,7 +21,8 @@ const Menu = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(0,191,255,.09);
+  background:rgba(0,191,255,0.3);
+  padding-left:10px;  
 `
 
 export default class Header extends Component {
@@ -39,8 +40,7 @@ export default class Header extends Component {
             </Link>
           </div>
           <div>View Build Guides</div>
-          <div>See Completed Builds</div>
-          <div>Search</div>
+          <div>See Completed Builds</div>          
         </Menu>
       </Head>
     )
