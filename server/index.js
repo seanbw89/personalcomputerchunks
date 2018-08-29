@@ -14,6 +14,14 @@ massive(DATABASE_URI).then(db=>{
   console.log('Database Connected');
 })
 
+
+app.get('/api/cpu', async (req,res)=>{
+  let db = app.get('db')
+  let cpu = await db.getCpu()
+  res.send([cpu])
+})
+
+
 app.listen(SERVER_PORT, ()=>{
   console.log(`Listening On Port ${SERVER_PORT}`);
 })
