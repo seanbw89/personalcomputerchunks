@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import Modal from 'react-modal'
+import axios from 'axios'
 
 const Head = styled.div`
   width:100%;
@@ -38,7 +39,7 @@ const modalStyles = {
     height                : '410px',
     background            : 'rgb(169,169,169)',
     borderRadius          : '10px',
-    boxShadow             : '2px 2px 2px grey'
+    boxShadow             : '0px 5px 3px 2px rgba(0,0,0,0.5)'
   }
 }
 
@@ -46,28 +47,49 @@ export default class Header extends Component {
   constructor(){
     super()
     this.state = {
-      modal:false,
+      loginModal:false,
+      registerModal:false,
       email:'',
-      passWord:''
+      passWord:'',
+      regUsername:'',
+      regEmail:'',
+      regPass:'',
+      regConPass:'',
+      user:{}
     }
   }
   openModal(){
-    this.setState({modal:true})
+    this.setState({loginModal:true})
   }
   closeModal(){
-    this.setState({modal:false})
+    this.setState({loginModal:false})
+  }
+  openRegModal(){
+    this.closeModal()
+    this.setState({registerModal:true})
+  }
+  closeRegModal(){
+    this.setState({registerModal:false})
   }
   handleInput(event){
     this.setState({[event.target.name]:[event.target.value]})
   }
+  register(){
+    let {regUsername, regEmail, regPass} = this.state
+    axios.post('/api/register', {regUsername, regEmail, regPass}).then(res=>{
+      this.setState({user:res.data})
+    })
+    this.closeRegModal()
+  }
   render() {
+    console.log(this.state);
     return (
       <Head>
         <LogoLogin>
           <div>LOGO</div>
-          <div><span onClick={()=>this.openModal()}>LOGIN</span></div>
+          <div><span onClick={()=>this.openModal()}>Log In</span> | <span onClick={()=>this.openRegModal()}> Register</span> </div>
           <Modal
-          isOpen={this.state.modal}
+          isOpen={this.state.loginModal}
           onRequestClose={()=>this.closeModal()}
           style={modalStyles}
           >
@@ -82,9 +104,30 @@ export default class Header extends Component {
               {this.state.passWord}
               <input type="checkbox"/> Remeber Me     
               <button style={{marginTop:'10px'}} onClick={()=>this.closeModal()}>Login</button>
-              <p>Want to Join? Register Here.</p>
+              <p>Want to Join? 
+                <span onClick={()=>this.openRegModal()}>                  
+                    Register Here.                  
+                </span> 
+              </p>
               <p>Forot Your password?</p>
             </form>
+          </Modal>
+          <Modal
+          isOpen={this.state.registerModal}
+          onRequestClose={()=>this.closeRegModal()}
+          style={modalStyles}
+          >
+          <form action=""  style={{display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column', paddingTop:'10px'}}>
+            <label htmlFor="Username">Username</label>
+            <input type="text" placeholder='User Name' name='regUsername'onChange={(e)=> this.handleInput(e)}/>
+            <label htmlFor="Username">Email</label>
+            <input type="email" placeholder='Email' name='regEmail' onChange={(e)=> this.handleInput(e)}/>
+            <label htmlFor="Username">Password</label>
+            <input type="password" placeholder='Password' name='regPass' onChange={(e)=> this.handleInput(e)}/>
+            <label htmlFor="Username">Confirm Password</label>
+            <input type="password" placeholder='Confirm Password' name='regConPass' onChange={(e)=> this.handleInput(e)}/>
+            <button onClick={()=>this.register()}>Register</button>
+          </form>
           </Modal>
         </LogoLogin>
         <Menu>

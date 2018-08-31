@@ -1,6 +1,7 @@
 -- create table users(
 -- id serial primary key,
--- user_name varchar(120),
+-- user_name varchar(80)
+-- email varchar(120),
 -- password varchar(40),
 -- picture varchar(200),
 -- user_id uuid NOt null default uuid_generate_v4()) with(oids=false)
