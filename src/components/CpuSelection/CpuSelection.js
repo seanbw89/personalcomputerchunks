@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {addCpu} from '../../ducks/reducer'
 
 const Wrapper = styled.div`
   width:100%;
@@ -22,7 +25,7 @@ const Ptag = styled.p`
 
 
 
-export default class CpuSelection extends Component {
+class CpuSelection extends Component {
   constructor(){
     super()
     this.state={
@@ -56,6 +59,7 @@ export default class CpuSelection extends Component {
               <th>
                 <Ptag>Price</Ptag>  
               </th>
+              <th><span>&nbsp;&nbsp;</span></th>
             </tr>
           </thead>
           <tbody>
@@ -78,6 +82,7 @@ export default class CpuSelection extends Component {
                     <td>
                     {e.price}  
                     </td>
+                    <td><button onClick={()=> this.props.addCpu(e.product_id)}>Add</button></td>
                   </tr>
               )
             })
@@ -88,3 +93,10 @@ export default class CpuSelection extends Component {
     )
   }
 }
+function mapState(state){
+  let {cpu} = state;
+  return {
+    cpu
+  }
+}
+export default withRouter(connect(mapState, {addCpu})(CpuSelection))

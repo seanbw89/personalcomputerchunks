@@ -3,7 +3,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
-const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
+const axios = require('axios')
+const {SERVER_PORT,REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,CLIENT_SECRET,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
 
@@ -19,6 +20,14 @@ app.use(session({
 massive(DATABASE_URI).then(db=>{
   app.set('db',db)
   console.log('Database Connected');
+})
+
+
+
+
+app.get('/api/logout',(req,res)=>{
+  req.session.destroy();
+  res.send({})
 })
 
 
