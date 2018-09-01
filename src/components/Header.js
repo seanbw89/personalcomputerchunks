@@ -58,6 +58,9 @@ export default class Header extends Component {
       user:{}
     }
   }
+  componentWillMount(){
+    Modal.setAppElement('body')
+  }
   openModal(){
     this.setState({loginModal:true})
   }
@@ -72,17 +75,18 @@ export default class Header extends Component {
     this.setState({registerModal:false})
   }
   handleInput(event){
-    this.setState({[event.target.name]:[event.target.value]})
+    let name = event.target.name
+    let value = event.target.value
+    this.setState({[name]:value})
   }
   register(){
     let {regUsername, regEmail, regPass} = this.state
     axios.post('/api/register', {regUsername, regEmail, regPass}).then(res=>{
-      this.setState({user:res.data})
+      console.log(res.data,res)
     })
     this.closeRegModal()
   }
   render() {
-    console.log(this.state);
     return (
       <Head>
         <LogoLogin>
@@ -104,12 +108,12 @@ export default class Header extends Component {
               {this.state.passWord}
               <input type="checkbox"/> Remeber Me     
               <button style={{marginTop:'10px'}} onClick={()=>this.closeModal()}>Login</button>
-              <p>Want to Join? 
+              <p>Want to Join? &nbsp;
                 <span onClick={()=>this.openRegModal()}>                  
                     Register Here.                  
                 </span> 
               </p>
-              <p>Forot Your password?</p>
+              <p>Forgot Your password?</p>
             </form>
           </Modal>
           <Modal
@@ -117,7 +121,7 @@ export default class Header extends Component {
           onRequestClose={()=>this.closeRegModal()}
           style={modalStyles}
           >
-          <form action=""  style={{display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column', paddingTop:'10px'}}>
+          <form style={{display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column', paddingTop:'10px'}}>
             <label htmlFor="Username">Username</label>
             <input type="text" placeholder='User Name' name='regUsername'onChange={(e)=> this.handleInput(e)}/>
             <label htmlFor="Username">Email</label>
@@ -126,7 +130,10 @@ export default class Header extends Component {
             <input type="password" placeholder='Password' name='regPass' onChange={(e)=> this.handleInput(e)}/>
             <label htmlFor="Username">Confirm Password</label>
             <input type="password" placeholder='Confirm Password' name='regConPass' onChange={(e)=> this.handleInput(e)}/>
-            <button onClick={()=>this.register()}>Register</button>
+            <button onClick={(e)=>e.preventDefault(this.register()) }>Register</button>
+            {
+              console.log(this.state)
+            }
           </form>
           </Modal>
         </LogoLogin>

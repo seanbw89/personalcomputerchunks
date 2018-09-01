@@ -3,13 +3,13 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
-const axios = require('axios')
-const {SERVER_PORT,REACT_APP_DOMAIN,REACT_APP_CLIENT_ID,CLIENT_SECRET,DATABASE_URI,SESSION_SECRET} = process.env
+const bcrypt = require('bcryptjs')
+const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
 
-app.use(bodyParser.urlencoded({extended:true}))
 app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 
 app.use(session({
   secret:SESSION_SECRET,
@@ -22,12 +22,21 @@ massive(DATABASE_URI).then(db=>{
   console.log('Database Connected');
 })
 
-
-
-
-app.get('/api/logout',(req,res)=>{
-  req.session.destroy();
-  res.send({})
+app.post('/api/register', async (req,res)=>{
+  let db = req.app.get('db')
+  let {regUsername, regEmail, regPass} = req.body
+  let foundUser = db.find_user([regEmail,regPass])
+  if(foundUser[0]){
+    res.send('You already Have An Account')
+  }else{
+    bcrypt.genSalt(10, (err,salt)=>{
+      bcrypt.hash(regPass,salt,(err,hash)=>{
+        let createdUser = db.create_user([regUsername,regEmail,hash,''])
+        req.session.user = createdUser[0]
+        res.send(req.session.user)
+      })
+})
+  }
 })
 
 

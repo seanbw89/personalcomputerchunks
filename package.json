@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
@@ -28,7 +29,7 @@
   },
   "main": "server/index.js",
   "proxy": {
-    "/api": {
+    "/api/": {
       "target": "http://localhost:4001"
     }
   }
