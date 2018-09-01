@@ -94,6 +94,13 @@ class Header extends Component {
       this.props.addSession(res.data)
     })
   }
+  logIn(){
+    let {email,passWord} = this.state
+    axios.post('/api/login',{email,passWord}).then(res=>{
+      this.props.addSession(res.data)
+    })
+    this.closeModal()
+  }
   render() {
     return (
       <Head>
@@ -135,7 +142,7 @@ class Header extends Component {
               <input name='passWord' type="password" placeholder='Password' onChange={(e)=> this.handleInput(e)}/> 
               {this.state.passWord}
               <input type="checkbox"/> Remeber Me     
-              <button style={{marginTop:'10px'}} onClick={()=>this.closeModal()}>Login</button>
+              <button style={{marginTop:'10px'}} onClick={(e)=>e.preventDefault(this.logIn())}>Login</button>
               <p>Want to Join? &nbsp;
                 <span onClick={()=>this.openRegModal()}>                  
                     Register Here.                  

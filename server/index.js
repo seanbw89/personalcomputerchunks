@@ -39,9 +39,19 @@ app.post('/api/register', async (req,res)=>{
   }
   
 })
-app.post('/api/login', (req,res)=>{
+app.post('/api/login', async (req,res)=>{
   let db = app.get('db')
   let {email, passWord} = req.body
+  let user = await db.login_user([email,passWord])
+  let hashPass = await db.hash_pass(email)
+  bcrypt.compare(passWord,hashPass[0].password, async (err,response)=>{
+    if(response){
+      req.session.user = user[0]
+      res.send(req.session.user)
+    }else{
+      res.send(`${err}`)
+    }
+  })
 })
 
 
