@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const session = require('express-session')
 const massive = require('massive')
-const bcrypt = require('bcryptjs')
+const bcrypt = require('bcrypt')
 const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
@@ -23,22 +23,32 @@ massive(DATABASE_URI).then(db=>{
 })
 
 app.post('/api/register', async (req,res)=>{
-  let db = req.app.get('db')
+  let db = app.get('db')
   let {regUsername, regEmail, regPass} = req.body
-  let foundUser = db.find_user([regEmail,regPass])
-  if(foundUser[0]){
-    res.send('You already Have An Account')
+  const saltRounds = 10
+  let found_user = await db.find_user([regUsername, regEmail])
+  if(found_user[0]){
+    res.status(401)
   }else{
-    bcrypt.genSalt(10, (err,salt)=>{
-      bcrypt.hash(regPass,salt,(err,hash)=>{
-        let createdUser = db.create_user([regUsername,regEmail,hash,''])
-        req.session.user = createdUser[0]
-        res.send(req.session.user)
-      })
-})
+    bcrypt.hash(regPass, saltRounds, async (err,hash)=>{      
+      let created_user = await db.create_user([regUsername, regEmail, hash, ''])
+      console.log(created_user[0])
+      req.session.user = created_user[0]
+      res.send(req.session.user)
+    })
   }
+  
+})
+app.post('/api/login', (req,res)=>{
+  let db = app.get('db')
+  let {email, passWord} = req.body
 })
 
+
+app.get('/api/logout', (req,res)=>{
+  req.session.destroy()
+  res.send({})
+})
 
 app.get('/api/cpu', async (req,res)=>{
     let db = app.get('db')

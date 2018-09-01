@@ -1,3 +1,3 @@
-select user_name,email,user_id
+select id,user_name,email,password
 from users
-where email = $1 and password = $2
+where user_name = $1 and email = $2

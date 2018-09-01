@@ -3,6 +3,9 @@ import styled from 'styled-components'
 import {Link} from 'react-router-dom'
 import Modal from 'react-modal'
 import axios from 'axios'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {addSession} from '../ducks/reducer'
 
 const Head = styled.div`
   width:100%;
@@ -43,7 +46,7 @@ const modalStyles = {
   }
 }
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(){
     super()
     this.state = {
@@ -82,16 +85,41 @@ export default class Header extends Component {
   register(){
     let {regUsername, regEmail, regPass} = this.state
     axios.post('/api/register', {regUsername, regEmail, regPass}).then(res=>{
-      console.log(res.data,res)
+      this.props.addSession(res.data)
     })
     this.closeRegModal()
+  }
+  logOut(){
+    axios.get('/api/logout').then(res=>{
+      this.props.addSession(res.data)
+    })
   }
   render() {
     return (
       <Head>
         <LogoLogin>
           <div>LOGO</div>
-          <div><span onClick={()=>this.openModal()}>Log In</span> | <span onClick={()=>this.openRegModal()}> Register</span> </div>
+          {
+            this.props.session.user_id 
+            ? (
+              <div>
+                {
+                  this.props.session.user_name
+                }
+                <span onClick={()=> this.logOut()}>Log Out</span>
+              </div>
+            ) 
+            : (
+              <div>
+                <span onClick={()=>this.openModal()}>
+                  Log In
+                </span> | 
+                <span onClick={()=>this.openRegModal()}>
+                  &nbsp;Register
+                </span> 
+              </div>
+            )                        
+          }
           <Modal
           isOpen={this.state.loginModal}
           onRequestClose={()=>this.closeModal()}
@@ -130,10 +158,7 @@ export default class Header extends Component {
             <input type="password" placeholder='Password' name='regPass' onChange={(e)=> this.handleInput(e)}/>
             <label htmlFor="Username">Confirm Password</label>
             <input type="password" placeholder='Confirm Password' name='regConPass' onChange={(e)=> this.handleInput(e)}/>
-            <button onClick={(e)=>e.preventDefault(this.register()) }>Register</button>
-            {
-              console.log(this.state)
-            }
+            <button onClick={(e)=>e.preventDefault(this.register()) }>Register</button>            
           </form>
           </Modal>
         </LogoLogin>
@@ -150,3 +175,10 @@ export default class Header extends Component {
     )
   }
 }
+function mapState(state){
+  let {session} = state
+  return {
+    session
+  }
+}
+export default withRouter(connect(mapState, {addSession})(Header))
