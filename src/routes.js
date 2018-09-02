@@ -10,7 +10,9 @@ import MemorySelection from './components/MemorySelection/MemorySelection'
 import PsuSelection from './components/PsuSelection/PsuSelection'
 import StorageSelection from './components/StorageSelection/StorageSelection'
 import VideoSelection from './components/VideoSelection/VideoSelection'
-
+import BuildGuides from './components/BuildGuides/BuildGuides'
+import CompletedBuilds from './components/CompletedBuilds/CompletedBuilds'
+import SavedList from './components/SavedLists/SavedList'
 
 
 export default(
@@ -28,5 +30,8 @@ export default(
     <Route path='/psu' component={PsuSelection}/>
     <Route path='/storage' component={StorageSelection}/>
     <Route path='/video' component={VideoSelection}/>
+    <Route path='/buildguides' component={BuildGuides}/>
+    <Route path='/completedbuilds' component={CompletedBuilds}/>
+    <Route path='/savedlist' component={SavedList}/>
   </AnimatedSwitch>
 )

@@ -113,7 +113,8 @@ class Header extends Component {
                 {
                   this.props.session.user_name
                 }
-                <span onClick={()=> this.logOut()}>Log Out</span>
+                &nbsp;| &nbsp;
+              <span><Link to='/savedlist'>Saved Lists</Link> | &nbsp;</span> <span onClick={()=> this.logOut()}>Log Out</span>
               </div>
             ) 
             : (
@@ -175,8 +176,16 @@ class Header extends Component {
               Start a System Build
             </Link>
           </div>
-          <div>View Build Guides</div>
-          <div>See Completed Builds</div>          
+          <div>
+            <Link to='/buildguides'>
+              View Build Guides
+            </Link>
+          </div>
+          <div>
+            <Link to='/completedbuilds'>
+              See Completed Builds
+            </Link>
+          </div>          
         </Menu>
       </Head>
     )
