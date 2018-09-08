@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
+import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {addCase} from '../../ducks/reducer'
 
 const Wrapper = styled.div`
   width:100%;
@@ -21,7 +24,7 @@ const Ptag = styled.p`
 `
 
 
-export default class CaseSelection extends Component {
+class CaseSelection extends Component {
   constructor(){
     super()
     this.state = {
@@ -95,6 +98,7 @@ export default class CaseSelection extends Component {
                     <td>
                       {e.price}
                     </td>
+                    <td><button onClick={()=>this.props.addCase(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })
@@ -105,3 +109,10 @@ export default class CaseSelection extends Component {
     )
   }
 }
+function mapState(state){
+  let {ccase} = state
+  return{
+    ccase
+  }
+}
+export default withRouter(connect(mapState, {addCase})(CaseSelection))

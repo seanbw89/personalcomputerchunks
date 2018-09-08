@@ -35,7 +35,6 @@ class CpuSelection extends Component {
   componentDidMount(){
     axios.get('/api/cpu').then(res=>{
       this.setState({cpu:res.data})
-      console.log(this.state.cpu);
     })
   }
   render() {

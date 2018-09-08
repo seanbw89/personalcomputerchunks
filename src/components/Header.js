@@ -174,7 +174,7 @@ class Header extends Component {
         <Menu>
           <div>
             <Link to='/' style={{textDecoration:'none',color:'inherit'}}>
-              Start a System Build
+              {this.props.cpu ? <p>View Build</p> : <p>Start A System Build</p>}
             </Link>
           </div>
           <div>
@@ -193,9 +193,10 @@ class Header extends Component {
   }
 }
 function mapState(state){
-  let {session} = state
+  let {session, cpu} = state
   return {
-    session
+    session,
+    cpu
   }
 }
 export default withRouter(connect(mapState, {addSession})(Header))
