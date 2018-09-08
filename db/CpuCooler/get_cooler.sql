@@ -1,0 +1,1 @@
+SELECT * from cpu_cooler

@@ -1,9 +1,17 @@
-require('dotenv').config();
-const express = require('express')
-const bodyParser = require('body-parser')
-const session = require('express-session')
-const massive = require('massive')
-const bcrypt = require('bcrypt')
+require('dotenv').config()
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  session = require('express-session'),
+  massive = require('massive'),
+  bcrypt = require('bcrypt'),
+  User = require('./controllers/Users'),
+  Cpu = require('./controllers/Cpu'),
+  Case = require('./controllers/Case'),
+  Cooler = require('./controllers/Cooler'),
+  MB = require('./controllers/MB'),
+  Memory = require('./controllers/Memory'),
+  Stor = require('./controllers/Stor')
+  Video = require('./controllers/videoCard');
 const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
@@ -20,58 +28,29 @@ app.use(session({
 massive(DATABASE_URI).then(db=>{
   app.set('db',db)
   console.log('Database Connected');
-})
 
-app.post('/api/register', async (req,res)=>{
-  let db = app.get('db')
-  let {regUsername, regEmail, regPass} = req.body
-  const saltRounds = 10
-  let found_user = await db.find_user([regUsername, regEmail])
-  if(found_user[0]){
-    res.status(401)
-  }else{
-    bcrypt.hash(regPass, saltRounds, async (err,hash)=>{      
-      let created_user = await db.create_user([regUsername, regEmail, hash, ''])
-      console.log(created_user[0])
-      req.session.user = created_user[0]
-      res.send(req.session.user)
-    })
-  }
-  
-})
-app.post('/api/login', async (req,res)=>{
-  let db = app.get('db')
-  let {email, passWord} = req.body
-  let user = await db.login_user([email,passWord])
-  let hashPass = await db.hash_pass(email)
-  bcrypt.compare(passWord,hashPass[0].password, async (err,response)=>{
-    if(response){
-      req.session.user = user[0]
-      res.send(req.session.user)
-    }else{
-      res.send(`${err}`)
-    }
+  app.listen(SERVER_PORT, ()=>{
+    console.log(`Listening On Port ${SERVER_PORT}`);
   })
 })
 
+//User
+app.post('/api/register', User.register)
+app.post('/api/login', User.login)
+app.get('/api/logout', User.logout)
 
-app.get('/api/logout', (req,res)=>{
-  req.session.destroy()
-  res.send({})
-})
-
-app.get('/api/cpu', async (req,res)=>{
-    let db = app.get('db')
-    let cpu = await db.getCpu()
-    res.send(cpu)
-})
-
-app.get('/api/case', async (req,res)=>{
-  let db = app.get('db')
-  let compcase = await db.GetCase()
-  res.send(compcase)
-})
-
-app.listen(SERVER_PORT, ()=>{
-  console.log(`Listening On Port ${SERVER_PORT}`);
-})
+//----------------------------------------
+//Cpu
+app.get('/api/cpu', Cpu.getcpu)
+//Case
+app.get('/api/case', Case.getcase)
+//Cpu_cooler
+app.get('/api/cooler', Cooler.getcooler)
+//MotherBoard
+app.get('/api/motherboard', MB.getmb)
+//memory
+app.get('/api/memory', Memory.getmem)
+//storage
+app.get('/api/storage', Stor.getstor)
+//Video Card
+app.get('/api/videocard', Video.getvidcard)

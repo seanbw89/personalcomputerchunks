@@ -102,6 +102,7 @@ class Header extends Component {
     this.closeModal()
   }
   render() {
+    console.log(this.props);
     return (
       <Head>
         <LogoLogin>
