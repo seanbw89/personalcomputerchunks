@@ -3,6 +3,8 @@ const initState = {
   cooler:0,
   ccase:0,
   motherboard:0,
+  memory:0,
+  stor:0,
   session:{}  
 }
 
@@ -11,6 +13,8 @@ const ADD_SESSION = 'ADD_SESSION'
 const ADD_COOLER = 'ADD_COOLER'
 const ADD_MB = 'ADD_MB'
 const ADD_CASE = 'ADD_CASE'
+const ADD_MEM = 'ADD_MEM'
+const ADD_STOR = 'ADD_STOR'
 
 export function addCpu(id){
   return{
@@ -36,6 +40,18 @@ export function addCase(id){
     payload:id
   }
 }
+export function addMem(id){
+  return{
+    type:ADD_MEM,
+    payload:id
+  }
+}
+export function addStor(id){
+  return{
+    type:ADD_STOR,
+    payload:id
+  }
+}
 
 export function addSession(req){
   return{
@@ -55,6 +71,10 @@ export default function reducer(state = initState, action){
     return Object.assign({},state,{case:action.payload})
     case ADD_MB:
     return Object.assign({},state,{motherboard:action.payload})
+    case ADD_MEM:
+    return Object.assign({},state,{memory:action.payload})
+    case ADD_STOR:
+    return Object.assign({},state,{stor:action.payload})
     default:    
     return state
   }
