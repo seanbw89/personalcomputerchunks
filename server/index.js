@@ -10,7 +10,8 @@ const express = require('express'),
   MB = require('./controllers/MB'),
   Memory = require('./controllers/Memory'),
   Stor = require('./controllers/Stor')
-  Video = require('./controllers/videoCard');
+  Video = require('./controllers/videoCard')
+  PSU = require('./controllers/PowerSupply');
 const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
@@ -53,3 +54,5 @@ app.get('/api/memory', Memory.getmem)
 app.get('/api/storage', Stor.getstor)
 //Video Card
 app.get('/api/videocard', Video.getvidcard)
+//PSU
+app.get('/api/powersupply', PSU.getPsu)

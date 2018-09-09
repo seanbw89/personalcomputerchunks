@@ -5,6 +5,8 @@ const initState = {
   motherboard:0,
   memory:0,
   stor:0,
+  video:0,
+  psu:0,
   session:{}  
 }
 
@@ -15,6 +17,8 @@ const ADD_MB = 'ADD_MB'
 const ADD_CASE = 'ADD_CASE'
 const ADD_MEM = 'ADD_MEM'
 const ADD_STOR = 'ADD_STOR'
+const ADD_VIDEO = 'ADD_VIDEO'
+const ADD_PSU = 'ADD_PSU'
 
 export function addCpu(id){
   return{
@@ -52,6 +56,19 @@ export function addStor(id){
     payload:id
   }
 }
+export function addVideo(id){
+  return{
+    type:ADD_VIDEO,
+    payload:id
+  }
+}
+export function addPsu(id){
+  return{
+    type:ADD_PSU,
+    payload:id
+  }
+}
+
 
 export function addSession(req){
   return{
@@ -75,6 +92,10 @@ export default function reducer(state = initState, action){
     return Object.assign({},state,{memory:action.payload})
     case ADD_STOR:
     return Object.assign({},state,{stor:action.payload})
+    case ADD_VIDEO:
+    return Object.assign({},state,{video:action.payload})
+    case ADD_PSU:
+    return Object.assign({},state,{psu:action.payload})
     default:    
     return state
   }

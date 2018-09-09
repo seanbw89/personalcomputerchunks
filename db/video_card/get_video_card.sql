@@ -1,1 +1,1 @@
-select * from video_card
+select * from vid_card
