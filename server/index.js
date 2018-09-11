@@ -42,6 +42,7 @@ app.get('/api/logout', User.logout)
 //----------------------------------------
 //Cpu
 app.get('/api/cpu', Cpu.getcpu)
+app.post('/api/singlecpu', Cpu.getSingle)
 //Case
 app.get('/api/case', Case.getcase)
 //Cpu_cooler

@@ -1,0 +1,1 @@
+select * from cpu where product_id = $1
