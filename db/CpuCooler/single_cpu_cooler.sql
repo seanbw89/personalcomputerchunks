@@ -1,0 +1,1 @@
+select * from cpu_cooler where product_id = $1

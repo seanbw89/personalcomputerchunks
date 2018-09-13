@@ -1,12 +1,12 @@
 const initState = {
-  cpu:0,
-  cooler:0,
-  ccase:0,
-  motherboard:0,
-  memory:0,
-  stor:0,
-  video:0,
-  psu:0,
+  cpu:'',
+  cooler:'',
+  ccase:'',
+  motherboard:'',
+  memory:'',
+  stor:'',
+  video:'',
+  psu:'',
   session:{}  
 }
 

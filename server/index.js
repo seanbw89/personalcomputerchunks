@@ -47,10 +47,13 @@ app.post('/api/singlecpu', Cpu.getSingle)
 app.get('/api/case', Case.getcase)
 //Cpu_cooler
 app.get('/api/cooler', Cooler.getcooler)
+app.post('/api/singlecooler', Cooler.getSingleCooler)
 //MotherBoard
 app.get('/api/motherboard', MB.getmb)
+app.post('/api/singlemotherboard', MB.getSingleMB)
 //memory
 app.get('/api/memory', Memory.getmem)
+app.post('/api/getsinglememory', Memory.getSingleMem)
 //storage
 app.get('/api/storage', Stor.getstor)
 //Video Card

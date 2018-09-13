@@ -1,0 +1,1 @@
+select * from memory where product_id = $1

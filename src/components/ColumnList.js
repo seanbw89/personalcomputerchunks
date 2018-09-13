@@ -36,19 +36,37 @@ class ColumnList extends Component {
   constructor(){
     super()
     this.state = {
-      cpu:[]
+      cpu:[],
+      cooler:[],
+      motherboard:[],
+      memory:[]
     }
   }
   componentDidMount(){
-    let {cpu} = this.props
-    axios.post('/api/singlecpu',{cpu}).then(res=>{        
-        this.setState({cpu:res.data})
+    let {cpu, cooler, motherboard, memory} = this.props
+    if(cpu !== ''){
+      axios.post('/api/singlecpu',{cpu}).then(res=>{        
+          this.setState({cpu:res.data})
+        })
+    }
+    if(cooler !== ''){
+      axios.post('/api/singlecooler', {cooler}).then(res=>{
+        this.setState({cooler:res.data})
       })
+    }
+    if(motherboard !== ''){
+      axios.post('/api/singlemotherboard', {motherboard}).then(res=>{
+        this.setState({motherboard:res.data})
+      })
+    }
+    if(memory !== ''){
+      axios.post('/api/getsinglememory', {memory}).then(res=>{
+        this.setState({memory:res.data})
+      })
+    }
     
   }
-  render() {
-    console.log(this.props.cpu)
-    console.log(this.state.cpu)
+  render() {    
     return (           
       <Wrapper>
         <Table>
@@ -71,11 +89,23 @@ class ColumnList extends Component {
                 <td></td>
                 <td></td>            
             </tr>
-            <tr>
+            {
+              this.props.cpu !== '' ?              
+            <tr style={{height:'30px'}}>
+            <td></td>
+            <td style={{verticalAlign:'middle'}}>
               {
                 this.state.cpu.map(e=> <p>{e.model}</p>)
               }
+            </td>
+            <td style={{ verticalAlign:'middle'}}>
+              {
+                this.state.cpu.map(e=> <p>{e.price}</p>)
+              }
+            </td>
             </tr>
+            :null
+            }            
             <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}>
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>CPU Cooler</td>
                 <td  style={{verticalAlign:'middle'}}>
@@ -86,6 +116,23 @@ class ColumnList extends Component {
                 <td></td>
                 <td></td>  
             </tr>
+            {
+              this.props.cooler !== '' ?              
+            <tr style={{height:'30px'}}>
+            <td></td>
+            <td style={{verticalAlign:'middle'}}>
+              {
+                this.state.cooler.map(e=> <p>{e.model}</p>)
+              }
+            </td>
+            <td style={{ verticalAlign:'middle'}}>
+              {
+                this.state.cooler.map(e=> <p>{e.price}</p>)
+              }
+            </td>
+            </tr>
+            :null
+            }            
             <tr style={{backgroundColor:'rgba(192,192,192,.3)',  height:'30px'}}>              
               <td style={{verticalAlign:'middle', paddingLeft:'20px'}}>Motherboard</td>
                 <td  style={{verticalAlign:'middle'}}>
@@ -96,6 +143,23 @@ class ColumnList extends Component {
                 <td></td>
                 <td></td>
             </tr>
+            {
+            this.props.motherboard !== '' ?              
+            <tr style={{height:'30px'}}>
+            <td></td>
+            <td style={{verticalAlign:'middle'}}>
+              {
+                this.state.motherboard.map(e=> <p>{e.model}</p>)
+              }
+            </td>
+            <td style={{ verticalAlign:'middle'}}>
+              {
+                this.state.motherboard.map(e=> <p>{e.price}</p>)
+              }
+            </td>
+            </tr>
+            :null
+            }
             <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}> 
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Memory</td>
                 <td  style={{verticalAlign:'middle'}}>
@@ -106,6 +170,23 @@ class ColumnList extends Component {
                 <td></td>
                 <td></td>
             </tr>
+            {
+            this.props.memory !== '' ?              
+            <tr style={{height:'30px'}}>
+            <td></td>
+            <td style={{verticalAlign:'middle'}}>
+              {
+                this.state.memory.map(e=> <p>{e.model}</p>)
+              }
+            </td>
+            <td style={{ verticalAlign:'middle'}}>
+              {
+                this.state.memory.map(e=> <p>{e.price}</p>)
+              }
+            </td>
+            </tr>
+            :null
+            }
             <tr style={{backgroundColor:'rgba(192,192,192,.3)',  height:'30px'}}>              
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Storage</td>
                 <td  style={{verticalAlign:'middle'}}>

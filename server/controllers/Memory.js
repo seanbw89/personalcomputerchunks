@@ -7,5 +7,11 @@ module.exports = {
     } catch (error) {
       console.log(error)
     }
+  },
+  getSingleMem: async (req,res)=>{
+    let db = req.app.get('db')
+    let {memory} = req.body
+    let singleMemory = await db.Memory.get_single_mem([memory])
+    res.send(singleMemory)
   }
 }
