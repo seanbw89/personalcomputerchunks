@@ -1,0 +1,1 @@
+select * from compcase where product_id = $1

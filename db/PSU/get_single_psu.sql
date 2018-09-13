@@ -1,0 +1,1 @@
+select * from psu where product_id = $1

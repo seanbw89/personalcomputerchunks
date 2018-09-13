@@ -1,0 +1,1 @@
+select * from storage where product_id = $1
