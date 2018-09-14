@@ -101,7 +101,7 @@ class ColumnList extends Component {
   saveList(){
     let {cpu,cooler,ccase,motherboard,memory,stor,video,psu} = this.props;
     let {user_id} = this.props.session
-    if(cpu && cooler && ccase && motherboard && memory && stor && video && psu &&user_id){
+    if(cpu && cooler && ccase && motherboard && memory && stor && video && psu && user_id){
       axios.post('/api/createlist', {cpu, cooler, ccase, motherboard, memory, stor, video, psu,user_id}).then(res=>{
         this.setState({list:res.data})
       })
@@ -109,12 +109,24 @@ class ColumnList extends Component {
       alert('You Need to have a full List')
     }
   }
+  updateList(){
+    let {cpu,cooler,ccase,motherboard,memory,stor,video,psu} = this.props;
+    let {user_id} = this.props.session
+    axios.put(`/api/updatelist/${user_id}`,{cpu,cooler,ccase,motherboard,memory,stor,video,psu}).then(res=>{
+      console.log(res.data);
+    })
+  }
   render() {    
     console.log(this.props.session.user_id)
     return (           
       <Wrapper>
-        <div style={{float:"left", width:'100%', marginLeft:'370px'}}>
-            <Button onClick={()=> this.saveList()}>SaveList</Button>
+        <div style={{display:'flex', justifyContent:'flex-start', alignItems:'center',}}>
+          <div style={{paddingRight:'10px'}}>
+              <Button onClick={()=> this.saveList()}>Save List</Button>
+          </div>
+          <div style={{paddingleft:'10px'}}>
+              <Button onClick={()=> this.updateList()}>Update List</Button>
+          </div>
         </div>
         <Table>
           <thead>
