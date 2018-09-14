@@ -34,7 +34,7 @@ const LogoLogin = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(202,202,202,0.9);
+  background:rgba(70,130,180,.2);
 `
 
 const Menu = styled.div`
@@ -43,7 +43,7 @@ const Menu = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(70,130,180,0.8);
+  background:rgba(70,130,180,.5);
 `
 
 const modalStyles = {
@@ -56,9 +56,10 @@ const modalStyles = {
     transform             : 'translate(-50%, -50%)',
     width                 : '200px',
     height                : '410px',
-    background            : 'rgb(169,169,169)',
-    borderRadius          : '10px',
-    boxShadow             : '0px 5px 3px 2px rgba(0,0,0,0.5)'
+    background            : 'linear-gradient(rgb(176,224,230), rgb(70,130,180))',
+    borderRadius          : '4px',
+    boxShadow             : '7px 7px 5px 0px rgba(0,0,0,0.34)',
+    border                : '.5px solid rgba(0,0,0,.4)'
   }
 }
 
@@ -127,7 +128,7 @@ class Header extends Component {
       <Head>
         <LogoLogin>
           <Link to='/' style={linkStyle}>
-            <div>LOGO</div>
+            <div><h1 style={{fontSize:'2rem'}}>Personal Computer <br/> Chunks</h1></div>
           </Link>
           {
             this.props.session.user_id 
@@ -158,20 +159,17 @@ class Header extends Component {
           style={modalStyles}
           >
             <form action="" style={{display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column', paddingTop:'10px'}}>
-              <h1>Personal Computer Chunks</h1>
-                <img src="" alt="Logo"/>
-                  <label htmlFor='email'>Email</label>
+              <h1 style={{marginBottom:'40px',fontSize:'1.3rem', fontWeight:'bold',textAlign:'center', marginTop:'20px'}}>Personal <br/> Computer Chunks</h1>                
+                  <label htmlFor='email' style={{marginBottom:'10px'}}>Email</label>
                     <input name='email' type="email" placeholder='Email' onChange={(e)=> this.handleInput(e)}/>              
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password" style={{marginBottom:'10px',marginTop:'10px'}}>Password</label>
                     <input name='passWord' type="password" placeholder='Password' onChange={(e)=> this.handleInput(e)}/>               
-                  <input type="checkbox"/> Remeber Me     
-                    <button style={{marginTop:'10px'}} onClick={(e)=>e.preventDefault(this.logIn())}>Login</button>
-              <p>Want to Join? &nbsp;
+                    <button style={{marginTop:'20px', marginBottom:'20px', borderRadius:'2px', padding:'5px',background:'rgba(176,224,230,.9)'}} onClick={(e)=>e.preventDefault(this.logIn())}>Login</button>
+              <p>Want to Join? &nbsp; <br/>
                 <span onClick={()=>this.openRegModal()}>                  
                     Register Here.                  
                 </span> 
               </p>
-              <p>Forgot Your password?</p>
             </form>
           </Modal>
           <Modal
@@ -180,15 +178,16 @@ class Header extends Component {
           style={modalStyles}
           >
           <form style={{display:'flex', justifyContent:'space-around', alignItems:'center', flexDirection:'column', paddingTop:'10px'}}>
-            <label htmlFor="Username">Username</label>
+          <h1 style={{marginBottom:'10px',fontSize:'1.3rem', fontWeight:'bold',textAlign:'center', marginTop:'20px'}}>Personal <br/> Computer Chunks</h1>
+            <label style={{marginBottom:'10px'}} htmlFor="Username">Username</label>
             <input type="text" placeholder='User Name' name='regUsername'onChange={(e)=> this.handleInput(e)}/>
-            <label htmlFor="Username">Email</label>
+            <label style={{marginBottom:'10px',marginTop:'10px'}} htmlFor="Username">Email</label>
             <input type="email" placeholder='Email' name='regEmail' onChange={(e)=> this.handleInput(e)}/>
-            <label htmlFor="Username">Password</label>
+            <label style={{marginBottom:'10px',marginTop:'10px'}} htmlFor="Username">Password</label>
             <input type="password" placeholder='Password' name='regPass' onChange={(e)=> this.handleInput(e)}/>
-            <label htmlFor="Username">Confirm Password</label>
-            <input type="password" placeholder='Confirm Password' name='regConPass' onChange={(e)=> this.handleInput(e)}/>
-            <button onClick={(e)=>e.preventDefault(this.register()) }>Register</button>            
+            <label style={{marginBottom:'10px',marginTop:'10px'}} htmlFor="Username">Confirm Password</label>
+            <input style={{marginBottom:'10px',marginTop:'10px'}} type="password" placeholder='Confirm Password' name='regConPass' onChange={(e)=> this.handleInput(e)}/>
+            <button style={{marginTop:'20px', marginBottom:'20px', borderRadius:'2px', padding:'5px',background:'rgba(176,224,230,.9)'}} onClick={(e)=>e.preventDefault(this.register()) }>Register</button>            
           </form>
           </Modal>
         </LogoLogin>

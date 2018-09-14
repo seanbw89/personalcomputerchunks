@@ -30,7 +30,7 @@ const Ptag = styled.p`
 `
 
 const Button = styled.button`
-  background:rgba(127,127,127,.3);
+  background:rgba(176,224,230,.2);
   border-radius:3px;
   width:90px;
   height:30px;
