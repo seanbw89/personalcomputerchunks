@@ -36,6 +36,10 @@ class MbSelection extends Component {
       this.setState({mb:res.data})
     })
   }
+  addMb(e){
+    this.props.addMb(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -81,7 +85,7 @@ class MbSelection extends Component {
                     <td>
                       {e.max_mem}
                     </td>
-                    <td><button onClick={()=>this.props.addMb(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addMb(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })

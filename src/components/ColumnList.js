@@ -13,6 +13,7 @@ const Wrapper = styled.div`
   justify-content:space-evenly;
   align-items:center;
   background:rgba(192,192,192,.2);
+  flex-direction:column;
 `
 const Table = styled.table`
   width:80%;
@@ -26,6 +27,13 @@ const Ptag = styled.p`
   padding-top:10px;
   padding-bottom:40px;
   font-weight:bold;
+`
+
+const Button = styled.button`
+  background:rgba(127,127,127,.3);
+  border-radius:3px;
+  width:90px;
+  height:30px;
 `
 const linkStyle = {
   textDecoration:'none', 
@@ -43,7 +51,8 @@ class ColumnList extends Component {
       stor:[],
       videoCard:[],
       ccase:[],
-      psu:[]
+      psu:[],
+      userlist:[]
     }
   }
   componentDidMount(){
@@ -89,9 +98,24 @@ class ColumnList extends Component {
       })
     }
   }
+  saveList(){
+    let {cpu,cooler,ccase,motherboard,memory,stor,video,psu} = this.props;
+    let {user_id} = this.props.session
+    if(cpu && cooler && ccase && motherboard && memory && stor && video && psu &&user_id){
+      axios.post('/api/createlist', {cpu, cooler, ccase, motherboard, memory, stor, video, psu,user_id}).then(res=>{
+        this.setState({list:res.data})
+      })
+    }else{
+      alert('You Need to have a full List')
+    }
+  }
   render() {    
+    console.log(this.props.session.user_id)
     return (           
       <Wrapper>
+        <div style={{float:"left", width:'100%', marginLeft:'370px'}}>
+            <Button onClick={()=> this.saveList()}>SaveList</Button>
+        </div>
         <Table>
           <thead>
             <tr>
@@ -319,7 +343,7 @@ class ColumnList extends Component {
             :null
             }
           </tbody>
-        </Table>        
+        </Table>                
       </Wrapper>
     )
   }
@@ -333,7 +357,8 @@ function mapState(state){
     memory,
     stor,
     video,
-    psu
+    psu,
+    session
   } = state
   return {
     cpu,
@@ -343,7 +368,8 @@ function mapState(state){
     memory,
     stor,
     video,
-    psu
+    psu,
+    session
   }
 }
 export default withRouter(connect(mapState)(ColumnList))

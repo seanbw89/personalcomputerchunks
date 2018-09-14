@@ -37,6 +37,10 @@ class StorageSelection extends Component {
       this.setState({stor:res.data})
     })
   }
+  addStor(e){
+    this.props.addStor(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -90,7 +94,7 @@ class StorageSelection extends Component {
                     <td>
                       0.00
                     </td>
-                    <td><button onClick={()=>this.props.addStor(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addStor(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })

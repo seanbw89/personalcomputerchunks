@@ -11,7 +11,8 @@ const express = require('express'),
   Memory = require('./controllers/Memory'),
   Stor = require('./controllers/Stor')
   Video = require('./controllers/videoCard')
-  PSU = require('./controllers/PowerSupply');
+  PSU = require('./controllers/PowerSupply')
+  List = require('./controllers/List');
 const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
@@ -64,3 +65,9 @@ app.post('/api/singlevideocard', Video.getSingleVidCard)
 //PSU
 app.get('/api/powersupply', PSU.getPsu)
 app.post('/api/singlepowersupply', PSU.getSinglePsu)
+//List
+// app.get()
+app.post('/api/createlist', List.CreateList)
+// app.patch()
+// app.put()
+// app.delete()

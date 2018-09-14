@@ -37,6 +37,10 @@ class CpuSelection extends Component {
       this.setState({cpu:res.data})
     })
   }
+  addCpu(e){
+    this.props.addCpu(e);
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -81,7 +85,7 @@ class CpuSelection extends Component {
                     <td>
                     {e.price}  
                     </td>
-                    <td><button onClick={()=> this.props.addCpu(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=> this.addCpu(e.product_id) }>Add</button></td>
                   </tr>
               )
             })

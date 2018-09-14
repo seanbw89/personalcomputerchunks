@@ -37,6 +37,10 @@ class MemorySelection extends Component {
       this.setState({memory:res.data})
     })
   }
+  addMem(e){
+    this.props.addMem(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -86,7 +90,7 @@ class MemorySelection extends Component {
                     </td>
                     <td>4 stars</td>
                     <td>00.00</td>
-                    <td><button onClick={()=>this.props.addMem(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addMem(e.product_id)}>Add</button></td>
                   </tr>
                   
                 )

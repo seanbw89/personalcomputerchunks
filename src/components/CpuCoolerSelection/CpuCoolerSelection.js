@@ -36,6 +36,10 @@ class CpuCoolerSelection extends Component {
       this.setState({cooler:res.data})
     })
   }
+  addCooler(e){
+    this.props.addCooler(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -83,7 +87,7 @@ class CpuCoolerSelection extends Component {
                     <td>
                       {e.c_height !== null ? e.c_height : 'N/A'}
                     </td>
-                    <td><button onClick={()=>this.props.addCooler(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addCooler(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })

@@ -35,6 +35,10 @@ class VideoSelection extends Component {
       this.setState({video:res.data})      
     })
   }
+  addVideo(e){
+    this.props.addVideo(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -88,7 +92,7 @@ class VideoSelection extends Component {
                     <td>
                       0.00
                     </td>
-                    <td><button onClick={()=>this.props.addVideo(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addVideo(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })

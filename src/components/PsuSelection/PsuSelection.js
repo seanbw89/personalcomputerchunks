@@ -35,6 +35,10 @@ class PsuSelection extends Component {
       this.setState({psu:res.data})
     })
   }
+  addPsu(e){
+    this.props.addPsu(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -88,7 +92,7 @@ class PsuSelection extends Component {
                     <td>
                       Price
                     </td>
-                    <td><button onClick={()=>this.props.addPsu(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addPsu(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })

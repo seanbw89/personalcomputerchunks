@@ -37,6 +37,10 @@ class CaseSelection extends Component {
       console.log(this.state.compcase);
     })
   }
+  addCase(e){
+    this.props.addCase(e)
+    this.props.history.push('/')
+  }
   render() {
     return (
       <Wrapper>
@@ -98,7 +102,7 @@ class CaseSelection extends Component {
                     <td>
                       {e.price}
                     </td>
-                    <td><button onClick={()=>this.props.addCase(e.product_id)}>Add</button></td>
+                    <td><button onClick={()=>this.addCase(e.product_id)}>Add</button></td>
                   </tr>
                 )
               })
