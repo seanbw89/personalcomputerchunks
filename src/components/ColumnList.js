@@ -42,7 +42,7 @@ class ColumnList extends Component {
       memory:[],
       stor:[],
       videoCard:[],
-      cccase:[],
+      ccase:[],
       psu:[]
     }
   }

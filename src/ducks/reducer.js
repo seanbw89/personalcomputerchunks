@@ -85,7 +85,7 @@ export default function reducer(state = initState, action){
     case ADD_COOLER:
     return Object.assign({},state,{cooler:action.payload})
     case ADD_CASE:
-    return Object.assign({},state,{case:action.payload})
+    return Object.assign({},state,{ccase:action.payload})
     case ADD_MB:
     return Object.assign({},state,{motherboard:action.payload})
     case ADD_MEM:

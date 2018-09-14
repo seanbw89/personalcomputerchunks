@@ -204,7 +204,7 @@ class Header extends Component {
                   this.props.ccase ||
                   this.props.stor ||
                   this.props.psu ? 
-                 <p>View Build</p> : <p>Start A System Build</p>}
+                <p>View Build</p> : <p>Start A System Build</p>}
               </Link>
             </Hover>
             <Hover>
