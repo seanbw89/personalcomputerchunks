@@ -34,7 +34,10 @@ const LogoLogin = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(70,130,180,.2);
+  background:rgba(170,109,0,.4);
+  -webkit-box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
+  -moz-box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
+  box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
 `
 
 const Menu = styled.div`
@@ -43,7 +46,7 @@ const Menu = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(70,130,180,.5);
+  background:rgba(255,155,0,.4);
 `
 
 const modalStyles = {

@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   display:flex;
   justify-content:space-evenly;
   align-items:center;
-  background:rgba(192,192,192,.2);
+  background:rgba(255,255,255,.5);
   flex-direction:column;
 `
 const Table = styled.table`
