@@ -16,6 +16,7 @@ const express = require('express'),
 const {SERVER_PORT,DATABASE_URI,SESSION_SECRET} = process.env
 const app = express()
 
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
