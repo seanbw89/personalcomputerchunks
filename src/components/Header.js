@@ -12,22 +12,6 @@ const Head = styled.header`
   height:140px;
   background:rgba(192,192,192,.2);
 `
-
-const Hover = styled.div`
-  width:inherit;
-  height:inherit;
-  display:flex;
-  justify-content:space-evenly;
-  align-items:center;
-  flex-direction:row;
-  border-right:1px solid white;
-  border-left:1px solid white;
-  :hover{
-    background:rgba(70,130,180,0.8);
-  }
-  
-`
-
 const LogoLogin = styled.div`
   width:100%;
   height:80px;
@@ -39,14 +23,27 @@ const LogoLogin = styled.div`
   -moz-box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
   box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
 `
-
 const Menu = styled.div`
   width:100%;
-  height:50px;
+  height:60px;
+  background:rgba(30,114,255,.2);  
+`
+const InnerMenu = styled.div`
+  width:61%;
+  height:60px;  
+  margin:0 auto;
   display:flex;
-  justify-content:space-around;
+  justify-content:flex-start;  
+`
+const MenuItem = styled.div`
+  height:60px;
+  width:200px;    
+  display:flex;
   align-items:center;
-  background:rgba(255,155,0,.4);
+  justify-content:space-evenly;  
+  :hover{
+    background:rgba(30,144,255,.5);    
+  }
 `
 
 const modalStyles = {
@@ -68,7 +65,9 @@ const modalStyles = {
 
 const linkStyle = {
   textDecoration:'none', 
-  color:'inherit'
+  color:'inherit', 
+  fontFamily:'Lato, sans-serif',
+  cursor:'context-menu'
 }
 
 class Header extends Component {
@@ -131,26 +130,31 @@ class Header extends Component {
       <Head>
         <LogoLogin>
           <Link to='/' style={linkStyle}>
-            <div><h1 style={{fontSize:'2rem'}}>Personal Computer <br/> Chunks</h1></div>
+            <div><h1 style={{fontSize:'2rem',fontFamily:'Lato,sans-serif'}}>Personal Computer <br/> Chunks</h1></div>
           </Link>
           {
             this.props.session.user_id 
             ? (
-              <div>
-                Welcome &nbsp;
+              <div >
+                <span style={{fontFamily:'Lato, sans-serif'}}>
+                  Welcome &nbsp;
                 {
                   this.props.session.user_name
                 }
-                &nbsp;| &nbsp;
-              <span><Link style={linkStyle} to='/savedlist'>Saved Lists</Link> | &nbsp;</span> <span onClick={()=> this.logOut()}>Log Out</span>
+                &nbsp;
+                </span>                
+                &nbsp;
+                | &nbsp;
+              <span><Link style={linkStyle} to='/savedlist'> Saved Lists</Link> | &nbsp;</span> <span style={linkStyle} onClick={()=> this.logOut()}>Log Out</span>
               </div>
             ) 
-            : (
+            : 
+            (
               <div>
-                <span onClick={()=>this.openModal()}>
+                <span onClick={()=>this.openModal()} style={linkStyle}>                  
                   Log In
                 </span> | 
-                <span onClick={()=>this.openRegModal()}>
+                <span onClick={()=>this.openRegModal()} style={linkStyle}>
                   &nbsp;Register
                 </span> 
               </div>
@@ -194,9 +198,10 @@ class Header extends Component {
           </form>
           </Modal>
         </LogoLogin>
-        <Menu>          
-            <Hover>
+          <Menu>
+            <InnerMenu>
               <Link to='/' style={linkStyle}>
+                <MenuItem>                  
                 {
                   this.props.cpu ||
                   this.props.cooler || 
@@ -206,20 +211,21 @@ class Header extends Component {
                   this.props.ccase ||
                   this.props.stor ||
                   this.props.psu ? 
-                <p>View Build</p> : <p>Start A System Build</p>}
+                  <p>View Build</p> : <p>Start A System Build</p>}
+                </MenuItem>
               </Link>
-            </Hover>
-            <Hover>
-              <Link to='/buildguides'  style={linkStyle}>
-                View Build Guides
+              <Link to='/buildguides' style={linkStyle}>
+                <MenuItem>                  
+                    Build Guides                  
+                </MenuItem>
               </Link>
-            </Hover>
-            <Hover>
               <Link to='/completedbuilds' style={linkStyle}>
-                See Completed Builds
+                <MenuItem>                
+                  Completed Builds              
+                </MenuItem>
               </Link>
-            </Hover>          
-        </Menu>
+            </InnerMenu>
+          </Menu>
       </Head>
     )
   }

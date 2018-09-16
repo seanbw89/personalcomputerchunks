@@ -37,7 +37,7 @@ const Button = styled.button`
 `
 const linkStyle = {
   textDecoration:'none', 
-  color:'inherit'
+  color:'inherit',  
 }
 
 class ColumnList extends Component {
@@ -122,11 +122,15 @@ class ColumnList extends Component {
       <Wrapper>
         <div style={{display:'flex', justifyContent:'flex-start', alignItems:'center',}}>
           <div style={{paddingRight:'10px'}}>
-              <Button onClick={()=> this.saveList()}>Save List</Button>
-          </div>
-          <div style={{paddingleft:'10px'}}>
-              <Button onClick={()=> this.updateList()}>Update List</Button>
-          </div>
+          {
+            this.state.userlist === [] 
+            ?
+            <Button onClick={()=> this.updateList()}>Update List</Button>
+            :
+            <Button onClick={()=> this.saveList()}>Save List</Button>
+
+          }
+          </div>          
         </div>
         <Table>
           <thead>

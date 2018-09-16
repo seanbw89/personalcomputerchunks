@@ -32,5 +32,14 @@ module.exports = {
     } catch (error) {
       console.log(error);
     }
+  },
+  getAllList: async (req,res)=>{
+    try {
+      let db = req.app.get('db')
+      let allLists = await db.UserList.get_all_lists()
+      res.send(allLists)
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

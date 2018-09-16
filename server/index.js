@@ -66,6 +66,7 @@ app.post('/api/singlevideocard', Video.getSingleVidCard)
 app.get('/api/powersupply', PSU.getPsu)
 app.post('/api/singlepowersupply', PSU.getSinglePsu)
 //List
+app.get('/api/alllists', List.getAllList)
 // app.get('/api/userlist', List.getList)
 app.post('/api/createlist', List.CreateList)
 app.put('/api/updatelist/:user_id', List.updateList)
