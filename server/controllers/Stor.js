@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let Stor = await db.Storage.get_storage()
-      res.status().send(Stor)
+      res.status(200).send(Stor)
     } catch (error) {
       console.log(error)
     }

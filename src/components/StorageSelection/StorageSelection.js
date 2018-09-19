@@ -9,10 +9,14 @@ const Wrapper = styled.div`
   width:100%;
   height:100vh;
   display:flex;
-  justify-content:space-around;
+  justify-content:space-evenly;
+  flex-direction:column;
+  align-items:center;
 `
 const Table = styled.table`
-  width:80%;  
+  width:80%;
+  height:80vh;
+  margin-top:70px;   
 `
 const Ptag = styled.p`
   width:100%;
@@ -44,6 +48,11 @@ class StorageSelection extends Component {
   render() {
     return (
       <Wrapper>
+        <div style={{width:'100%', background:'rgb(78,94,166)',height:'110px', display:'flex', justifyContent:'flex-start', alignItems:'center'}}>
+          <h2 style={{color:'white', fontSize:'2rem', fontFamily:'Lato, sans-serif', marginLeft:'350px'}}>
+            Choose Storage
+          </h2>
+        </div>
         <Table>
           <thead>
             <tr>
