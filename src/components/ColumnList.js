@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 const Table = styled.table`
   width:80%;
   height:80vh;
-  margin-top:-50px;
+  margin-top:50px;
 `
 const Ptag = styled.p`
   width:100%;
@@ -119,7 +119,12 @@ class ColumnList extends Component {
   render() {    
     console.log(this.props.session.user_id)
     return (           
-      <Wrapper>        
+      <Wrapper>
+        <div style={{width:'100%', background:'rgb(84,84,123)',height:'110px', display:'flex', justifyContent:'flex-start', alignItems:'center'}}>
+          <h2 style={{color:'white', fontSize:'2rem', fontFamily:'Lato, sans-serif', marginLeft:'350px'}}>
+            Current Part List
+          </h2>
+        </div>
         <Table>
           <thead>
             <tr>
@@ -130,11 +135,13 @@ class ColumnList extends Component {
             </tr>
           </thead>
           <tbody>
-            <tr style={{backgroundColor:'rgba(192,192,192,.3)', height:'30px'}}>
-              <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>CPU</td>              
+            <tr style={{height:'5px'}}>
+              <td  style={{verticalAlign:'middle', paddingLeft:'20px', paddingTop:'-10px', paddingBottom:'-10px'}}>CPU</td>              
                 <td style={{verticalAlign:'middle'}}>                  
                   <Link style={linkStyle} to='/cpu'>
-                    Choose A cpu
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
+                    Choose A CPU
+                  </button>
                   </Link>  
                 </td>
                 <td></td>
@@ -157,11 +164,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }            
-            <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}>
+            <tr style={{ height:'10px'}}>
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>CPU Cooler</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/cpucooler'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose a Cpu Cooler
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -184,11 +193,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }            
-            <tr style={{backgroundColor:'rgba(192,192,192,.3)',  height:'30px'}}>              
+            <tr style={{height:'10px'}}>              
               <td style={{verticalAlign:'middle', paddingLeft:'20px'}}>Motherboard</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/mb'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose a MB
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -211,11 +222,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }
-            <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}> 
+            <tr style={{height:'10px'}}> 
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Memory</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/memory'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose Memory
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -238,11 +251,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }
-            <tr style={{backgroundColor:'rgba(192,192,192,.3)',  height:'30px'}}>              
+            <tr style={{height:'10px'}}>              
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Storage</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/storage'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose Storage
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -265,11 +280,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }
-            <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}>              
+            <tr style={{height:'10px'}}>              
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Video Card</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/video'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose Video Card
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -292,11 +309,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }
-            <tr style={{backgroundColor:'rgba(192,192,192,.3)',  height:'30px'}}>              
+            <tr style={{height:'10px'}}>              
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Case</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/case'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose A Case
+                  </button>
                   </Link>
                 </td>
                 <td></td>
@@ -319,11 +338,13 @@ class ColumnList extends Component {
             </tr>
             :null
             }
-            <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'30px'}}>              
+            <tr style={{backgroundColor:'rgba(192,192,192,.2)',  height:'10px'}}>              
               <td  style={{verticalAlign:'middle', paddingLeft:'20px'}}>Power Supply</td>
                 <td  style={{verticalAlign:'middle'}}>
                   <Link style={linkStyle} to='/psu'>
+                  <button style={{borderRadius:'4px', background:'rgb(26,123,188)', color:'white', border:'none', padding:'3px'}}>
                     Choose A PSU
+                  </button>
                   </Link>
                 </td>
                 <td></td>

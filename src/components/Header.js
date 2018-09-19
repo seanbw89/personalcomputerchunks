@@ -29,8 +29,8 @@ const LogoLogin = styled.div`
 const Menu = styled.div`
   width:100%;
   height:60px;
-  background:rgba(37,40,53,.9);
-  color:rgba(255,255,255,.9);  
+  background:rgba(37,40,53,1);
+  color:rgba(255,255,255,1);  
 `
 const InnerMenu = styled.div`
   width:61%;
@@ -45,6 +45,8 @@ const MenuItem = styled.div`
   display:flex;
   align-items:center;
   justify-content:space-evenly;  
+  border-right:1px solid rgba(255,255,255,.22);
+  border-left:1px solid rgba(255,255,255,.22);
   :hover{
     background:rgba(30,144,255,.5);    
   }
