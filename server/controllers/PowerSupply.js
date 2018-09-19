@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let psu = await db.PSU.get_psu()
-      res.send(psu)    
+      res.status(200).send(psu)    
     } catch (error) {
       console.log(error);
     }

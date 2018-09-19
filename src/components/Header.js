@@ -6,6 +6,9 @@ import axios from 'axios'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import {addSession} from '../ducks/reducer'
+import Wrench from './Wrench.png'
+import Page from './Page.PNG'
+import Computer from './Computer.PNG'
 
 const Head = styled.header`
   width:100%;
@@ -18,7 +21,7 @@ const LogoLogin = styled.div`
   display:flex;
   justify-content:space-around;
   align-items:center;
-  background:rgba(170,109,0,.4);
+  background:rgba(255,255,255,.9);
   -webkit-box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
   -moz-box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
   box-shadow: inset -2px -10px 31px -10px rgba(0,0,0,0.88);
@@ -26,7 +29,8 @@ const LogoLogin = styled.div`
 const Menu = styled.div`
   width:100%;
   height:60px;
-  background:rgba(30,114,255,.2);  
+  background:rgba(37,40,53,.9);
+  color:rgba(255,255,255,.9);  
 `
 const InnerMenu = styled.div`
   width:61%;
@@ -130,7 +134,7 @@ class Header extends Component {
       <Head>
         <LogoLogin>
           <Link to='/' style={linkStyle}>
-            <div><h1 style={{fontSize:'2rem',fontFamily:'Lato,sans-serif'}}>Personal Computer <br/> Chunks</h1></div>
+            <div><h1 style={{fontSize:'2rem',fontFamily:'Lato,sans-serif'}}>Personal <span style={{color:'#EEA900'}}>Computer</span>  <br/> Chunks</h1></div>
           </Link>
           {
             this.props.session.user_id 
@@ -201,7 +205,8 @@ class Header extends Component {
           <Menu>
             <InnerMenu>
               <Link to='/' style={linkStyle}>
-                <MenuItem>                  
+                <MenuItem>
+                <img style={{width:'45px', height:'45px'}} src={Wrench} alt=""/>                             
                 {
                   this.props.cpu ||
                   this.props.cooler || 
@@ -211,17 +216,27 @@ class Header extends Component {
                   this.props.ccase ||
                   this.props.stor ||
                   this.props.psu ? 
-                  <p>View Build</p> : <p>Start A System Build</p>}
+                  <p> <span style={{color:'#EEA900',fontSize:'.7rem', letterSpacing:'1px'}}>View</span> <br/> System Build</p> : <p> <span style={{color:'#EEA900',fontSize:'.7rem', letterSpacing:'1px', lineHeight:'200%'}}>Start a</span> <br/> A System Build</p>}
                 </MenuItem>
               </Link>
               <Link to='/buildguides' style={linkStyle}>
-                <MenuItem>                  
+                <MenuItem>
+                <img style={{width:'35px', height:'40px'}} src={Page} alt=""/>
+                <p>
+                  <span style={{color:'#EEA900', fontSize:'.7rem', letterSpacing:'1px', lineHeight:'200%'}}>View The</span><br/>
                     Build Guides                  
+                </p>                  
                 </MenuItem>
               </Link>
               <Link to='/completedbuilds' style={linkStyle}>
-                <MenuItem>                
+                <MenuItem>
+                <img style={{width:'35px', height:'40px'}} src={Computer} alt=""/>
+                <p>
+                  <span style={{color:'#EEA900', fontSize:'.7rem', letterSpacing:'1px', lineHeight:'200%'}}>
+                    See All
+                  </span><br/>
                   Completed Builds              
+                </p>                
                 </MenuItem>
               </Link>
             </InnerMenu>

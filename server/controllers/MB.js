@@ -3,7 +3,7 @@ module.exports ={
     try {
       let db = req.app.get('db')
       let motherboard = await db.Motherboard.get_mb()
-      res.send(motherboard)
+      res.status(200).send(motherboard)
     } catch (error) {
       console.log(error)
     }

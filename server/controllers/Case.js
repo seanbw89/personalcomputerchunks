@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let compcase = await db.Case.GetCase()
-      res.send(compcase)
+      res.status(200).send(compcase)
     } catch (error) {
       console.log(error)
     }

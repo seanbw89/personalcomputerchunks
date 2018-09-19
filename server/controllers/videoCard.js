@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let videocard = await db.video_card.get_video_card()
-      res.send(videocard)
+      res.status(200).send(videocard)
     } catch (error) {
       console.log(error);
     }

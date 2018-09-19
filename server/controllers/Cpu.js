@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let cpu = await db.Cpu.getCpu()
-      res.send(cpu)
+      res.status(200).send(cpu)
     } catch (error) {
       console.log(error)
     }

@@ -119,19 +119,7 @@ class ColumnList extends Component {
   render() {    
     console.log(this.props.session.user_id)
     return (           
-      <Wrapper>
-        <div style={{display:'flex', justifyContent:'flex-start', alignItems:'center',}}>
-          <div style={{paddingRight:'10px'}}>
-          {
-            this.state.userlist === [] 
-            ?
-            <Button onClick={()=> this.updateList()}>Update List</Button>
-            :
-            <Button onClick={()=> this.saveList()}>Save List</Button>
-
-          }
-          </div>          
-        </div>
+      <Wrapper>        
         <Table>
           <thead>
             <tr>
@@ -359,7 +347,19 @@ class ColumnList extends Component {
             :null
             }
           </tbody>
-        </Table>                
+        </Table>
+        <div style={{display:'flex', justifyContent:'flex-start', alignItems:'center',}}>
+          <div style={{paddingRight:'10px'}}>
+          {
+            this.state.userlist === [] 
+            ?
+            <Button onClick={()=> this.updateList()}>Update List</Button>
+            :
+            <Button onClick={()=> this.saveList()}>Save List</Button>
+
+          }
+          </div>          
+        </div>                
       </Wrapper>
     )
   }

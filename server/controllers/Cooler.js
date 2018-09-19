@@ -3,7 +3,7 @@ module.exports = {
     try {
       let db = req.app.get('db')
       let cooler = await db.CpuCooler.get_cooler()
-      res.send(cooler)
+      res.status(200).send(cooler)
     } catch (error) {
       console.log(error)
     }
